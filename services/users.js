@@ -62,6 +62,7 @@ function logout() {
     logoutSupabase(localStorage.getItem('access_token')).then(lOData => {
         console.log(lOData);
         localStorage.removeItem('access_token');
+        window.location.hash = '#/login';
     });
 
 }

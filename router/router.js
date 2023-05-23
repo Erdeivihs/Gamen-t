@@ -1,6 +1,8 @@
 export { router };
+import { Menu } from "../components/menu.js";
 import { Login } from "../components/login.js";
 import { Registre } from "../components/registre.js";
+import { Game } from "../views/game.js";
 
 const router = (route) => {
   console.log(route);
@@ -19,8 +21,8 @@ const router = (route) => {
         let regsitro = new Registre();
         regsitro.renderRegistre();
         break;
-      case "#/shooter":
-        shootergame();
+      case "#/games":
+        Game();
         break;
       case "#/plataformeo":
           plataformeogame();

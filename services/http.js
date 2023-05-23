@@ -1,12 +1,12 @@
 import { router } from "../router/router.js";
-export {loginSupabase, fileRequest, getFileRequest, signUpSupabase , logoutSupabase, recoverPasswordSupabase, getData, updateData, createData};
+export {loginSupabase, fileRequest, getFileRequest, signUpSupabase , logoutSupabase, recoverPasswordSupabase, getData, updateData, createData, getFiltro};
 
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRraGtsc3hjY3ltdWx1bXhrYW95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODMyNzg2NDEsImV4cCI6MTk5ODg1NDY0MX0.5Hlvp_3VdMn8yJh6nRkQbXaA5XvZyf-I-I9hIN1mG70";
 const urlBase = "https://tkhklsxccymulumxkaoy.supabase.co";
 const headers = {
     "apiKey": SUPABASE_KEY,
     "Content-Type": "application/json",
-}; 
+};
 
 
 
@@ -133,6 +133,14 @@ async function createData(URI,token,data){
     };
     let response = await supaRequest(url,'post',headersAux,data);
     return response;
+}
+
+async function getFiltro(URI,token){
+    let url = `${urlBase}/rest/v1/${URI}`;
+    let headersAux = {...headers, "Authorization" :"Bearer "+token};
+    let data = await supaRequest(url,'get',headersAux);
+    console.log(data);
+    return data;
 }
 
 //async function getEliminar(tabla, idToDelete,token) {

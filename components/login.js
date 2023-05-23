@@ -25,7 +25,7 @@ class Login {
             </div>
             <button type="button" id="login" class="btn btn-primary">Submit</button>
           </form>
-				
+		  <a href="#/registre" type="button" id="singup" class="btn btn-success">Registro</a>
 			</div>`
 	
 		;

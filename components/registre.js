@@ -25,7 +25,7 @@ class Registre {
             </div>
             <button type="button" id="registrar" class="btn btn-primary">Submit</button>
           </form>
-				
+          <a href="#/login" type="button" class="btn btn-success">Login</a>
 			</div>`
 	
 		;
