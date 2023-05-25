@@ -16,6 +16,7 @@ async function loginUser(email, password) {
         localStorage.setItem("access_token", dataLogin.access_token);
         let user = await buscarPerfil("profiles?select=*&id=eq."+dataLogin.user.id,localStorage.getItem('access_token'))
         console.log(user);
+        localStorage.setItem("username", user.username);
         localStorage.setItem("expirationDate",expirationDate(dataLogin.expires_in));
         console.log("Buenarda");
         status.success = true;
@@ -65,6 +66,7 @@ function logout() {
     logoutSupabase(localStorage.getItem('access_token')).then(lOData => {
         console.log(lOData);
         localStorage.removeItem('access_token');
+        localStorage.removeItem('username');
         window.location.hash = '#/login';
     });
 
