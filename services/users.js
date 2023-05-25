@@ -1,4 +1,4 @@
-import { loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase, updateData, createData, getData, fileRequest, getFileRequest} from "./http.js";
+import { loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase, updateData, createData, getData, fileRequest, getFileRequest, buscarPerfil} from "./http.js";
 
 export { loginUser, isLogged, registerUser, logout,updateProfile, getProfile, forgotPassword, loginWithToken };
 
@@ -12,7 +12,10 @@ async function loginUser(email, password) {
     try {
         let dataLogin = await loginSupabase(email, password);
         console.log(dataLogin);
+        
         localStorage.setItem("access_token", dataLogin.access_token);
+        let user = await buscarPerfil("profiles?select=*&id=eq."+dataLogin.user.id,localStorage.getItem('access_token'))
+        console.log(user);
         localStorage.setItem("expirationDate",expirationDate(dataLogin.expires_in));
         console.log("Buenarda");
         status.success = true;

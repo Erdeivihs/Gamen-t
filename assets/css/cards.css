@@ -1,9 +1,19 @@
+.container{
+  max-width: 1800px;
+  display: flex;
+  align-items: center;
+  margin-left: 90px;
+}
+
 .center {
     transform: scale(1.5);
-    height: 100vh;
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 10px;
+    margin-right: 180px;
+    margin-left: 60px;
   }
   
   .article-card {

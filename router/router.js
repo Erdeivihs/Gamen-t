@@ -5,9 +5,18 @@ import { Registre } from "../components/registre.js";
 import { Game } from "../views/game.js";
 
 const router = (route) => {
-  console.log(route);
   
-    switch (route) {
+  const paramStartIndex = route.indexOf("(");
+  const paramEndIndex = route.indexOf(")");
+  let params = "";
+
+  if (paramStartIndex !== -1 && paramEndIndex !== -1) {
+    params = route.substring(paramStartIndex + 1, paramEndIndex);
+  }
+
+  const routeWithoutParams = paramStartIndex !== -1 ? route.substring(0, paramStartIndex) : route;
+
+    switch (routeWithoutParams) {
       case "#/menu":
         let M = new Menu();
         M.rendermenu();
@@ -22,7 +31,7 @@ const router = (route) => {
         regsitro.renderRegistre();
         break;
       case "#/games":
-        Game();
+        Game(params);
         break;
       case "#/plataformeo":
           plataformeogame();
