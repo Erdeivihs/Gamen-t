@@ -37,11 +37,6 @@ async function Game(params) {
     let card = document.createElement("div");
 
     card.innerHTML = `
-    <ul>
-    <li>
-    <button class="button-glitch" role="button">Add</button>
-    </li>
-    </ul>
         <div class="center">
           <div class="article-card">
             <div class="content">
@@ -50,6 +45,11 @@ async function Game(params) {
               <img src="${await getCaratula(game)}" />
           </div>
         </div>
+        <ul>
+        <li>
+        <button class="button-glitch" role="button">Add</button>
+        </li>
+        </ul>
     `;
 
     divPrincipal.querySelector("#container").append(card);
