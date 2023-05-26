@@ -12,21 +12,32 @@ class Registre {
 		let div = document.querySelector("#principal");
 		div.innerHTML = `
 			
-			<div class="registre">
-            <h1>Registro</h1>
-            <form>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email</label>
-              <input type="email" class="form-control" id="signupemail" name="signupemail" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" id="signuppassword" name="signuppassword" class="form-control" id="exampleInputPassword1">
-            </div>
-            <button type="button" id="registrar" class="btn btn-primary">Submit</button>
-          </form>
-          <a href="#/login" type="button" class="btn btn-success">Login</a>
-			</div>`
+    <link rel="stylesheet" type="text/css" href="./assets/css/login.css"> 
+		<div class="login-box">
+		<p>Sign Up</p>
+		<form>
+    <div class="user-box">
+			<input required="" name="username" id="username" type="text">
+			<label>Username</label>
+		  </div>
+		  <div class="user-box">
+			<input required="" name="signupemail" id="signupemail" type="text">
+			<label>Email</label>
+		  </div>
+		  <div class="user-box">
+			<input required="" name="signuppassword" id="signuppassword" type="password">
+			<label>Password</label>
+		  </div>
+		  <a id="registrar" href="#" >
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			Submit
+		  </a>
+		</form>
+		<p>I have an account <a href="#/login" class="a2">Login</a></p>
+	  </div>`
 	
 		;
 
@@ -36,8 +47,8 @@ class Registre {
 			
             let email = document.querySelector('#signupemail').value;
             let password = document.querySelector('#signuppassword').value;
-            let dataLogin = registerUser(email, password);
-            console.log(dataLogin);
+            let username = document.querySelector('#username').value;
+            registerUser(email, password,username);
             window.location.hash = '#/login';
     });
 

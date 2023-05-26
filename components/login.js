@@ -11,22 +11,29 @@ class Login {
 	renderLogin() {
 		let div = document.querySelector("#principal");
 		div.innerHTML = `
-			
-			<div class="login">
-            <h1>Login</h1>
-            <form>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" id="password" name="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <button type="button" id="login" class="btn btn-primary">Submit</button>
-          </form>
-		  <a href="#/registre" type="button" id="singup" class="btn btn-success">Registro</a>
-			</div>`
+		<link rel="stylesheet" type="text/css" href="./assets/css/login.css"> 
+		<div class="login-box">
+		<p>Login</p>
+		<form>
+		  <div class="user-box">
+			<input required="" name="email" id="email" type="text">
+			<label>Email</label>
+		  </div>
+		  <div class="user-box">
+			<input required="" name="password" id="password" type="password">
+			<label>Password</label>
+		  </div>
+		  <a id="login" href="#" >
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			Submit
+		  </a>
+		</form>
+		<p>Don't have an account? <a href="#/registre" class="a2">Sign up!</a></p>
+	  </div>
+           `
 	
 		;
 

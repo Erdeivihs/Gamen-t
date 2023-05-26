@@ -1,4 +1,4 @@
-import { loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase, updateData, createData, getData, fileRequest, getFileRequest, buscarPerfil} from "./http.js";
+import { loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase, updateData, createData, getData, fileRequest, getFileRequest, buscarPerfil, añadirPerfil} from "./http.js";
 
 export { loginUser, isLogged, registerUser, logout,updateProfile, getProfile, forgotPassword, loginWithToken };
 
@@ -17,6 +17,7 @@ async function loginUser(email, password) {
         let user = await buscarPerfil("profiles?select=*&id=eq."+dataLogin.user.id,localStorage.getItem('access_token'))
         console.log(user);
         localStorage.setItem("username", user.username);
+        localStorage.setItem("id", user.id);
         localStorage.setItem("expirationDate",expirationDate(dataLogin.expires_in));
         console.log("Buenarda");
         status.success = true;
@@ -45,14 +46,18 @@ function isLogged(){
     return false;
 }
 
-function registerUser(email, password) {
+    function registerUser(email, password,username) {
     let status = { success: false };
     try {
         signUpSupabase(email, password).then(dataRegister => {
-            console.log(dataRegister);
+            console.log(dataRegister.id);
+           // let body = {"username":+username};
+        añadirPerfil("profiles?id=eq."+dataRegister.id,{"username": username }).then(a=>{console.log(a);}); 
             status.success = true;
             console.log("Buenarda");
+            window.location.hash = '#/login';
         })
+       
     }
     catch (err) {
         console.log(err);
@@ -67,6 +72,7 @@ function logout() {
         console.log(lOData);
         localStorage.removeItem('access_token');
         localStorage.removeItem('username');
+        localStorage.removeItem('id');
         window.location.hash = '#/login';
     });
 
