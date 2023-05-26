@@ -56,6 +56,7 @@ class Menu {
             <a class="nav-link active" aria-current="page" href="#/games(Social)">Social</a>
           </li>        
         </ul>
+          <a href="#/perfil" class="btn btn-outline-danger" type="button">Perfil</a>
           <button id="logout" class="btn btn-outline-danger" type="button">LogOut</button>
       </div>
     </div>

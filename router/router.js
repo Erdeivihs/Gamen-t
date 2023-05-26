@@ -3,6 +3,7 @@ import { Menu } from "../components/menu.js";
 import { Login } from "../components/login.js";
 import { Registre } from "../components/registre.js";
 import { Game } from "../views/game.js";
+import { Perfil } from "../views/perfil.js";
 
 const router = (route) => {
   
@@ -33,8 +34,8 @@ const router = (route) => {
       case "#/games":
         Game(params);
         break;
-      case "#/plataformeo":
-          plataformeogame();
+      case "#/perfil":
+          Perfil();
           break;
       case "#/deportes":
         deportesgame();
