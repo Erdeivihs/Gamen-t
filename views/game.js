@@ -1,10 +1,11 @@
-import { getFiltro, getFileRequest } from "../services/http.js";
+import { getFiltro, getFileRequest, addGame, getButtonValue } from "../services/http.js";
 
 export { Game };
 
 async function Game(params) {
   let access_token = localStorage.getItem("access_token");
   let games = await getFiltro('Games?select=*&genre=eq.' + params, access_token);
+  console.log(games);
   let divPrincipal = document.querySelector("#contenido");
 
   divPrincipal.innerHTML = `
@@ -36,6 +37,9 @@ async function Game(params) {
 
     let card = document.createElement("div");
 
+    
+    
+
     card.innerHTML = `
         <div class="center">
           <div class="article-card">
@@ -47,13 +51,37 @@ async function Game(params) {
         </div>
         <ul>
         <li>
-        <button class="button-glitch" role="button">Add</button>
+        <button id="add" data-gameid="${game.id}" class="button-glitch" >Add</button>
         </li>
         </ul>
     `;
-
+   
     divPrincipal.querySelector("#container").append(card);
+    const button = card.querySelector("#add");
+    getButtonValue("User_games?id_games=eq."+game.id, access_token)
+      .then((result) => {
+        console.log(result);
+        const buttonValue = result[0]?.id_games;
+        console.log(buttonValue);
+        
+        if (buttonValue === game.id) {
+          console.log(buttonValue === game.id);
+          button.disabled = true;
+
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener el valor del botón:", error);
+      });
+    
+    card.querySelector("#add").addEventListener("click", function () {
+      let gameid = this.getAttribute("data-gameid");
+      addGame("User_games", [{"id_games": gameid , "id_profiles": localStorage.getItem("id")}], localStorage.getItem("access_token"));
+      console.log(this);
+    });
   }
+
+  
 
   function renderGames() {
     divPrincipal.querySelector("#container").innerHTML = "";

@@ -18,6 +18,7 @@ async function loginUser(email, password) {
         console.log(user);
         localStorage.setItem("username", user.username);
         localStorage.setItem("id", user.id);
+        localStorage.setItem("email",dataLogin.user.email);
         localStorage.setItem("expirationDate",expirationDate(dataLogin.expires_in));
         console.log("Buenarda");
         status.success = true;

@@ -1,5 +1,5 @@
 import { router } from "../router/router.js";
-export {loginSupabase, fileRequest, getFileRequest, signUpSupabase , logoutSupabase, recoverPasswordSupabase, getData, updateData, createData, getFiltro, buscarPerfil, añadirPerfil};
+export {loginSupabase, fileRequest, getFileRequest, signUpSupabase , logoutSupabase, recoverPasswordSupabase, getData, updateData, createData, getFiltro, buscarPerfil, añadirPerfil, addGame, deleteGame, getButtonValue};
 
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRraGtsc3hjY3ltdWx1bXhrYW95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODMyNzg2NDEsImV4cCI6MTk5ODg1NDY0MX0.5Hlvp_3VdMn8yJh6nRkQbXaA5XvZyf-I-I9hIN1mG70";
 const urlBase = "https://tkhklsxccymulumxkaoy.supabase.co";
@@ -84,6 +84,7 @@ async function getFileRequest(url,token){
 async function loginSupabase(email,password){ 
     let url = `${urlBase}/auth/v1/token?grant_type=password`;
     let data = await supaRequest(url,'post',headers,{ email, password });
+    console.log(data);
     return data;
 }
 
@@ -153,6 +154,28 @@ async function buscarPerfil(URI,token) {
 async function añadirPerfil(URI,data) {
     let url = `${urlBase}/rest/v1/${URI}`;
     let response = await supaRequest(url,'PATCH',headers,data);
+    return response;
+}
+
+async function addGame(URI, data, token) {
+    let url = `${urlBase}/rest/v1/${URI}`;
+    let headersAux = {...headers, "Authorization" :"Bearer "+token};
+    let response = await supaRequest(url,'post', headersAux, data);
+    return response;
+}
+
+async function deleteGame(URI, token) {
+    let url = `${urlBase}/rest/v1/${URI}`;
+    let headersAux = {...headers, "Authorization" :"Bearer "+token};
+    let response = await supaRequest(url,'delete', headersAux);
+    window.location.hash = '#/perfil';
+    return response;
+}
+
+async function getButtonValue(URI, token) {
+    let url = `${urlBase}/rest/v1/${URI}`;
+    let headersAux = {...headers, "Authorization" :"Bearer "+token};
+    let response = await supaRequest(url,'get', headersAux);
     return response;
 }
 
