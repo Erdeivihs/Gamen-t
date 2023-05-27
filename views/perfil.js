@@ -19,7 +19,7 @@ async function Perfil() {
 </head>
 <div class="infocardContainer">
   <div id="main">
-    <img src="../assets/img/perfil.png"></img>
+    <img src="./assets/img/perfil.png"></img>
   </div>
   <div id="textbois">
     
