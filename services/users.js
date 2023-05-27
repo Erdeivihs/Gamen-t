@@ -1,6 +1,6 @@
-import { loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase, updateData, createData, getData, fileRequest, getFileRequest, buscarPerfil, añadirPerfil} from "./http.js";
+import { loginSupabase, signUpSupabase, logoutSupabase, buscarPerfil, añadirPerfil} from "./http.js";
 
-export { loginUser, isLogged, registerUser, logout,updateProfile, getProfile, forgotPassword, loginWithToken };
+export { loginUser, isLogged, registerUser, logout, loginWithToken };
 
 function expirationDate(expires_in){
     return Math.floor(Date.now() / 1000)+expires_in; 
