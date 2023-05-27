@@ -14,7 +14,7 @@ async function Game(params) {
     <link rel="stylesheet" type="text/css" href="./assets/css/botones.css">
     <label for="inp" class="inp">
     <input type="text" id="searchInput" class="searchInput" placeholder="&nbsp;">
-    <span class="label">Buscar</span>
+    <span class="label">Search</span>
     <span class="focus-bg"></span>
     </label>
     <div class="container card-group" id="container">
@@ -23,7 +23,6 @@ async function Game(params) {
 
   async function createCard(game) {
     async function getCaratula(game) {
-      console.log(game.id);
       let img = game.thumbnail;
       game.image_blob = false;
       if (img) {
@@ -51,25 +50,25 @@ async function Game(params) {
         </div>
         <ul>
         <li>
-        <button id="add" data-gameid="${game.id}" class="button-glitch" >Add</button>
+        <button id="add" data-gameid="${game.id}" class="button-glitch">Add</button>
         </li>
         </ul>
     `;
    
     divPrincipal.querySelector("#container").append(card);
+
     const button = card.querySelector("#add");
-    getButtonValue("User_games?id_games=eq."+game.id, access_token)
+    getButtonValue("User_games?id_games=eq."+game.id+"&id_profiles=eq."+localStorage.getItem("id"), access_token)
       .then((result) => {
         console.log(result);
         const buttonValue = result[0]?.id_games;
-        console.log(buttonValue);
         
         if (buttonValue === game.id) {
-          console.log(buttonValue === game.id);
           button.disabled = true;
-
+          button.textContent = "Added";
         }
       })
+      
       .catch((error) => {
         console.error("Error al obtener el valor del botón:", error);
       });
@@ -78,6 +77,9 @@ async function Game(params) {
       let gameid = this.getAttribute("data-gameid");
       addGame("User_games", [{"id_games": gameid , "id_profiles": localStorage.getItem("id")}], localStorage.getItem("access_token"));
       console.log(this);
+      this.disabled = true;
+      button.textContent = "Added";
+      
     });
   }
 

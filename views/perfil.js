@@ -40,7 +40,7 @@ async function Perfil() {
 </div>
   <label for="inp" class="inp">
   <input type="text" id="searchInput" class="searchInput" placeholder="&nbsp;">
-  <span class="label">Buscar</span>
+  <span class="label">Search</span>
   <span class="focus-bg"></span>
   </label>
 
