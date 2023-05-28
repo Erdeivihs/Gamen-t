@@ -45,7 +45,7 @@ function isLogged(){
     return false;
 }
 
-    function registerUser(email, password,username) {
+    async function registerUser(email, password,username) {
     let status = { success: false };
     try {
         signUpSupabase(email, password).then(dataRegister => {
