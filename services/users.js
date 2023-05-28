@@ -15,12 +15,10 @@ async function loginUser(email, password) {
         
         localStorage.setItem("access_token", dataLogin.access_token);
         let user = await buscarPerfil("profiles?select=*&id=eq."+dataLogin.user.id,localStorage.getItem('access_token'))
-        console.log(user);
         localStorage.setItem("username", user.username);
         localStorage.setItem("id", user.id);
         localStorage.setItem("email",dataLogin.user.email);
         localStorage.setItem("expirationDate",expirationDate(dataLogin.expires_in));
-        console.log("Buenarda");
         status.success = true;
     }
     catch (err) {
@@ -51,16 +49,15 @@ function isLogged(){
     let status = { success: false };
     try {
         signUpSupabase(email, password).then(dataRegister => {
-            console.log(dataRegister.id);
         añadir("profiles?id=eq."+dataRegister.id,{"username": username }).then(a=>{console.log(a);}); 
             status.success = true;
-            console.log("Buenarda");
             window.location.hash = '#/login';
         })
        
     }
     catch (err) {
         console.log(err);
+        console.log("Hooa");
         status.success = false;
         status.errorText = err.error_description;
     }

@@ -48,8 +48,26 @@ class Registre {
             let email = document.querySelector('#signupemail').value;
             let password = document.querySelector('#signuppassword').value;
             let username = document.querySelector('#username').value;
-            registerUser(email, password,username);
-            window.location.hash = '#/login';
+            registerUser(email, password,username).then(status =>{
+				if (status.success) window.location.hash = '#/login';
+                    
+					 else {
+						let alertElement = document.createElement('div');
+						alertElement.classList.add('custom-alert');
+						
+						// Agregar contenido al alert
+						alertElement.innerHTML = 'Invalid parameters';
+						
+						// Agregar el alert al DOM
+						document.body.appendChild(alertElement);
+						
+						// Remover el alert después de unos segundos (opcional)
+						setTimeout(function() {
+						  document.body.removeChild(alertElement);
+						}, 3000);
+					}
+			})
+            
     });
 
 	}

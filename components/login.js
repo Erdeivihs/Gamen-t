@@ -47,7 +47,19 @@ class Login {
 					if (status.success) window.location.hash = '#/menu';
                     
 					 else {
-						divLogin.querySelector('#errors').innerHTML = status.errorText;
+						let alertElement = document.createElement('div');
+						alertElement.classList.add('custom-alert');
+						
+						// Agregar contenido al alert
+						alertElement.innerHTML = 'Username or password invalid';
+						
+						// Agregar el alert al DOM
+						document.body.appendChild(alertElement);
+						
+						// Remover el alert después de unos segundos (opcional)
+						setTimeout(function() {
+						  document.body.removeChild(alertElement);
+						}, 3000);
 					}
 				})
 			
