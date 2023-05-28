@@ -1,4 +1,4 @@
-import { loginSupabase, signUpSupabase, logoutSupabase, buscarPerfil, añadirPerfil} from "./http.js";
+import { loginSupabase, signUpSupabase, logoutSupabase, buscarPerfil, añadir} from "./http.js";
 
 export { loginUser, isLogged, registerUser, logout, loginWithToken };
 
@@ -52,8 +52,7 @@ function isLogged(){
     try {
         signUpSupabase(email, password).then(dataRegister => {
             console.log(dataRegister.id);
-           // let body = {"username":+username};
-        añadirPerfil("profiles?id=eq."+dataRegister.id,{"username": username }).then(a=>{console.log(a);}); 
+        añadir("profiles?id=eq."+dataRegister.id,{"username": username }).then(a=>{console.log(a);}); 
             status.success = true;
             console.log("Buenarda");
             window.location.hash = '#/login';

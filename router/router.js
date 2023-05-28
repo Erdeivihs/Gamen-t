@@ -4,6 +4,7 @@ import { Login } from "../components/login.js";
 import { Registre } from "../components/registre.js";
 import { Game } from "../views/game.js";
 import { Perfil } from "../views/perfil.js";
+import { Details } from "../views/details.js";
 
 const router = (route) => {
   
@@ -37,13 +38,9 @@ const router = (route) => {
       case "#/perfil":
           Perfil();
           break;
-      case "#/deportes":
-        deportesgame();
+      case "#/details":
+        Details(params);
           break;
-      case "#/carreras":
-          carrerasgame();
-          break;
-
     }
   
 };

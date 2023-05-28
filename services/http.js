@@ -1,5 +1,5 @@
 import { router } from "../router/router.js";
-export {loginSupabase, fileRequest, getFileRequest, signUpSupabase , logoutSupabase, getFiltro, buscarPerfil, añadirPerfil, addGame, deleteGame, getButtonValue};
+export {loginSupabase, fileRequest, getFileRequest, signUpSupabase , logoutSupabase, getFiltro, buscarPerfil, añadir, addGame, deleteGame, getButtonValue};
 
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRraGtsc3hjY3ltdWx1bXhrYW95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODMyNzg2NDEsImV4cCI6MTk5ODg1NDY0MX0.5Hlvp_3VdMn8yJh6nRkQbXaA5XvZyf-I-I9hIN1mG70";
 const urlBase = "https://tkhklsxccymulumxkaoy.supabase.co";
@@ -108,7 +108,7 @@ async function buscarPerfil(URI,token) {
     return data[0];
 }
 
-async function añadirPerfil(URI,data) {
+async function añadir(URI,data) {
     let url = `${urlBase}/rest/v1/${URI}`;
     let response = await supaRequest(url,'PATCH',headers,data);
     return response;

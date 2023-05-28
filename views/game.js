@@ -12,11 +12,14 @@ async function Game(params) {
     <link rel="stylesheet" type="text/css" href="./assets/css/cards.css"> 
     <link rel="stylesheet" type="text/css" href="./assets/css/search.css"> 
     <link rel="stylesheet" type="text/css" href="./assets/css/botones.css">
-    <label for="inp" class="inp">
-    <input type="text" id="searchInput" class="searchInput" placeholder="&nbsp;">
-    <span class="label">Search</span>
-    <span class="focus-bg"></span>
-    </label>
+    <div class="medio">
+    <div class="input-container">
+      <input id="searchInput" type="text" name="text" class="input" placeholder="search...">
+      <span class="icon"> 
+        <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+      </span>
+    </div>
+    </div>
     <div class="container card-group" id="container">
     </div>
   `;
@@ -75,7 +78,7 @@ async function Game(params) {
     
     card.querySelector("#add").addEventListener("click", function () {
       let gameid = this.getAttribute("data-gameid");
-      addGame("User_games", [{"id_games": gameid , "id_profiles": localStorage.getItem("id")}], localStorage.getItem("access_token"));
+      addGame("User_games", [{"id_games": gameid , "id_profiles": localStorage.getItem("id"), "hores": "0", "estat": "Played", "nota": "0" }], localStorage.getItem("access_token"));
       console.log(this);
       this.disabled = true;
       button.textContent = "Added";
