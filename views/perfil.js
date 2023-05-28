@@ -58,18 +58,6 @@ async function Perfil() {
       if (joc.id_games === game.id) {
         console.log(joc);
 
-        if (joc.hores == null) {
-          joc.hores = "0";
-        }
-
-        if (joc.estat == null) {
-          joc.estat = "Played";
-        }
-
-        if (joc.nota == null) {
-          joc.nota = "0";
-        }
-
         async function getCaratula(game) {
           let img = game.thumbnail;
           game.image_blob = false;
