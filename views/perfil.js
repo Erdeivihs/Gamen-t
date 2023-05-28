@@ -26,16 +26,7 @@ async function Perfil() {
 
     <h2>${localStorage.getItem("username")}</h2>
     <h3>${localStorage.getItem("email")}</h3>
-    <div id="hotlinks">
-      <a href="#"><img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-      </a>
-      <a href="#">
-        <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-      </a>
-      <a href="#">
-        <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-      </a>
-    </div>
+  
   </div>
 </div>
 <div class="medio">

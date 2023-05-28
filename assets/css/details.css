@@ -85,10 +85,10 @@ input {
 }
 .input-field:focus, .input-field:valid {
   outline: 0;
-  border-bottom-color: #6658d3;
+  border-bottom-color: #1b3039;
 }
 .input-field:focus + .input-label, .input-field:valid + .input-label {
-  color: #6658d3;
+  color: #1b3039;
   transform: translateY(-1.5rem);
 }
 
@@ -102,7 +102,7 @@ input {
   padding: 1em;
   width: 100%;
   font-weight: 500;
-  background-color: #6658d3;
+  background-color: #1b3039;
   border-radius: 6px;
   color: #FFF;
   border: 0;
@@ -119,7 +119,7 @@ input {
 }
 .card-info a {
   display: block;
-  color: #6658d3;
+  color: #1b3039;
   text-decoration: none;
 }
 
@@ -154,12 +154,12 @@ input {
   .select-field:focus,
   .select-field:valid {
     outline: 0;
-    border-bottom-color: #6658d3;
+    border-bottom-color: #1b3039;
   }
   
   .select-field:focus + .select-label,
   .select-field:valid + .select-label {
-    color: #6658d3;
+    color: #1b3039;
     transform: translateY(-1.5rem);
   }
   

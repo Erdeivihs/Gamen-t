@@ -6,7 +6,7 @@
   }
   h2 {
     font-weight: 600; font-style: italic; font-family: "Fira Sans Condensed", sans-serif;
-    color:  #0050db;
+    color:  #ffbc0e;
   }
   header {
     height: 2em;
@@ -16,7 +16,7 @@
     font-size: 2em;
     text-align: center;
     line-height: 2em;
-    color: #0050db;
+    color: #ffbc0e;
   }
   a {
     text-decoration: none;
@@ -32,8 +32,8 @@
     height: 200px;
     width: 200px;
     border-radius: 100px;
-    background: rgb(0,159,255);
-    background: linear-gradient(121deg, rgba(255,255,255,0) 13%, rgba(0,159,255,1) 100%);
+    /* background: rgb(0,159,255);
+    background: linear-gradient(121deg, rgba(255,255,255,0) 13%, rgba(0,159,255,1) 100%); */
     transition: all 500ms ease-in;
     transition-delay: 1s;
     margin: auto;
@@ -47,7 +47,7 @@
   }
   
   .infocardContainer div {
-    text-color:  #0050db;
+    text-color:  #ffbc0e;
     flex-shrink: 1;
     width: 100%;
     --background-color: green;
@@ -58,7 +58,7 @@
     overflow: hidden;
     text-overflow: hidden;
     --background-color: yellow;
-    color:  #0050db;
+    color:  #ffbc0e;
     white-space: nowrap;
     width: 0;
     height: auto;
