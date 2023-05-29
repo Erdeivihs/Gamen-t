@@ -6,6 +6,9 @@ async function Perfil() {
   let access_token = localStorage.getItem("access_token");
   let filtroid = await getFiltro('User_games?select=*&id_profiles=eq.' + localStorage.getItem("id"), access_token);
   const idGamesList = filtroid.map(obj => obj.id_games);
+  let amigos = await getFiltro('Friends?select=*&id_profiles=eq.'+localStorage.getItem("id"), access_token);
+  const nameFriends = amigos.map(obj => obj.name_friend);
+  console.log(nameFriends);
   let games = await getFiltro('Games?select=*&id=in.(' + idGamesList.join(',')+")", access_token)
   let divPrincipal = document.querySelector("#contenido");
 
@@ -14,7 +17,8 @@ async function Perfil() {
   <link rel="stylesheet" type="text/css" href="./assets/css/search.css"> 
   <link rel="stylesheet" type="text/css" href="./assets/css/botones.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/perfil.css">
-  <link rel="stylesheet" type="text/css" href="./assets/css/amigos.css"> 
+  <link rel="stylesheet" type="text/css" href="./assets/css/amigos.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/acordeo.css">  
   <head>
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,400,600i&display=swap" rel="stylesheet">
 </head>
@@ -30,6 +34,16 @@ async function Perfil() {
   
   </div>
 </div>
+
+<details>
+  <summary>
+    Friends
+  </summary>
+  <div class="cont">
+   
+  </div>
+</details>
+
 <div class="medio">
 <div class="input-container">
   <input id="searchInput" type="text" name="text" class="input" placeholder="search...">
@@ -107,11 +121,22 @@ async function Perfil() {
             Perfil();
           });
 
+          
+
       }
     })
     
       
   }
+
+  const divCont = divPrincipal.querySelector(".cont");
+
+  nameFriends.forEach((name) => {
+    const friendElement = document.createElement("p");
+    friendElement.textContent = name;
+    friendElement.classList.add("chip");
+    divCont.appendChild(friendElement);
+  });
 
   function renderGames() {
     divPrincipal.querySelector("#container").innerHTML = "";
