@@ -112,15 +112,16 @@ async function Friend(params) {
   console.log(buttonFriend);
   
   if (buttonFriend == user[0].id & buttonProfile == localStorage.getItem("id")) {
-    button.disabled = true;
+    button.style.pointerEvents = 'none';
     text.textContent = "Added Friend";
   }
 })
 
   divPrincipal.querySelector("#addFriends").addEventListener("click", function () {
-    addGame("Friends", [{"id_friends": user[0].id , "id_profiles": localStorage.getItem("id")}], localStorage.getItem("access_token"));
+    addGame("Friends", [{"id_friends": user[0].id , "name_friend": user[0].username , "id_profiles": localStorage.getItem("id")}], localStorage.getItem("access_token"));
     console.log(this);
-    
+    button.style.pointerEvents = 'none';
+    text.textContent = "Added Friend";
   });
 
 

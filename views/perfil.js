@@ -7,8 +7,6 @@ async function Perfil() {
   let filtroid = await getFiltro('User_games?select=*&id_profiles=eq.' + localStorage.getItem("id"), access_token);
   const idGamesList = filtroid.map(obj => obj.id_games);
   let amigos = await getFiltro('Friends?select=*&id_profiles=eq.'+localStorage.getItem("id"), access_token);
-  const nameFriends = amigos.map(obj => obj.name_friend);
-  console.log(nameFriends);
   let games = await getFiltro('Games?select=*&id=in.(' + idGamesList.join(',')+")", access_token)
   let divPrincipal = document.querySelector("#contenido");
 
@@ -40,7 +38,7 @@ async function Perfil() {
     Friends
   </summary>
   <div class="cont">
-   
+  
   </div>
 </details>
 
@@ -56,9 +54,9 @@ async function Perfil() {
   <span class="text">Add friends</span>
   <span class="bottom-key-1"></span>
   <span class="bottom-key-2"></span>
+ 
 </a>
 </div>
-
 
 
   <div class="container card-group" id="container">
@@ -131,10 +129,26 @@ async function Perfil() {
 
   const divCont = divPrincipal.querySelector(".cont");
 
-  nameFriends.forEach((name) => {
-    const friendElement = document.createElement("p");
-    friendElement.textContent = name;
+  amigos.forEach((name) => {
+    const friendElement = document.createElement("a");
+    friendElement.textContent = name.name_friend + "  ";
     friendElement.classList.add("chip");
+    friendElement.id = 'nuevaId';
+    friendElement.href = `#/friend(${name.id_friends})`;
+  
+    const iconElement = document.createElement("i");
+    iconElement.classList.add("bi", "bi-x-circle-fill");
+    iconElement.id = "deleteFriend";
+    iconElement.setAttribute("data-gameid", name.id_friends);
+    iconElement.style.zIndex = 10;
+  
+    iconElement.onclick = function () {
+      let friendId = this.getAttribute("data-gameid");
+      deleteGame("Friends?id_friends=eq." + friendId + "&id_profiles=eq." + localStorage.getItem("id"), localStorage.getItem("access_token"));
+      Perfil();
+    };
+  
+    friendElement.appendChild(iconElement);
     divCont.appendChild(friendElement);
   });
 
