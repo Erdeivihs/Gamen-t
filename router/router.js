@@ -5,6 +5,8 @@ import { Registre } from "../components/registre.js";
 import { Game } from "../views/game.js";
 import { Perfil } from "../views/perfil.js";
 import { Details } from "../views/details.js";
+import { List } from "../views/list.js";
+import { Friend } from "../views/friend.js";
 
 const router = (route) => {
   
@@ -41,6 +43,12 @@ const router = (route) => {
       case "#/details":
         Details(params);
           break;
+      case "#/list":
+          List();
+            break;
+      case "#/friend":
+            Friend(params);
+              break;
     }
   
 };

@@ -44,7 +44,7 @@ async function Game(params) {
 
     card.innerHTML = `
         <div class="center">
-          <div class="article-card">
+          <div  class="article-card">
             <div class="content">
               <p class="title">${game.title}</p>
             </div>

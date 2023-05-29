@@ -1,10 +1,14 @@
-import { getFiltro, getFileRequest, deleteGame } from "../services/http.js";
+import { getFiltro, getFileRequest, addGame } from "../services/http.js";
 
-export { Perfil };
+export { Friend };
 
-async function Perfil() {
+async function Friend(params) {
   let access_token = localStorage.getItem("access_token");
-  let filtroid = await getFiltro('User_games?select=*&id_profiles=eq.' + localStorage.getItem("id"), access_token);
+  let filtroid = await getFiltro('User_games?select=*&id_profiles=eq.' + params, access_token);
+  console.log(params);
+  let user = await getFiltro('profiles?id=eq.' + params, access_token);
+  console.log(user);
+  console.log(filtroid);
   const idGamesList = filtroid.map(obj => obj.id_games);
   let games = await getFiltro('Games?select=*&id=in.(' + idGamesList.join(',')+")", access_token)
   let divPrincipal = document.querySelector("#contenido");
@@ -24,9 +28,7 @@ async function Perfil() {
   </div>
   <div id="textbois">
     
-
-    <h2>${localStorage.getItem("username")}</h2>
-    <h3>${localStorage.getItem("email")}</h3>
+    <h2>${user[0].username}</h2>
   
   </div>
 </div>
@@ -37,7 +39,7 @@ async function Perfil() {
     <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
   </span>
 </div>
-<a class="fancy" href="#/list">
+<a id="addFriends" class="fancy" href="#">
   <span class="top-key"></span>
   <span class="text">Add friends</span>
   <span class="bottom-key-1"></span>
@@ -86,26 +88,11 @@ async function Perfil() {
               <li class="list-group-item">Note set: ${joc.nota}#</li>
               <li class="list-group-item">Game status: ${joc.estat}</li>
             </ul>
-            <ul>
-            <li>
-            <button id="add" data-gameid="${game.id}" class="button-glitch" role="button">Delete</button>
-            </li>
-            </ul>
     
         `;
     
     
         divPrincipal.querySelector("#container").append(card);
-    
-        card.querySelector("#edit").addEventListener("click", function () {
-          window.location.hash = `#/details(${game.id})`;
-        });
-    
-        card.querySelector("#add").addEventListener("click", function () {
-            let gameid = this.getAttribute("data-gameid");
-            deleteGame("User_games?id_games=eq."+gameid+"&id_profiles=eq."+localStorage.getItem("id"), localStorage.getItem("access_token"));
-            Perfil();
-          });
 
       }
     })
@@ -113,10 +100,20 @@ async function Perfil() {
       
   }
 
+  divPrincipal.querySelector("#addFriends").addEventListener("click", function () {
+    addGame("Friends", [{"id_friends": user[0].id , "id_profiles": localStorage.getItem("id")}], localStorage.getItem("access_token"));
+    console.log(this);
+    
+  });
+
+
+
   function renderGames() {
     divPrincipal.querySelector("#container").innerHTML = "";
     games.forEach(createCard);
   }
+
+  
 
   renderGames();
 
