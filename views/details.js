@@ -19,30 +19,37 @@ async function Details(params) {
 				
 			</h2>
 		</div>
+    <form>
 		<div class="card-form">
-			<div class="input">
-				<input type="text" id="hours" class="input-field" required/>
-				<label class="input-label">Hours</label>
-			</div>
-						<div class="input">
-				<input type="text" id="rank" class="input-field" required/>
-				<label class="input-label">Rank</label>
-			</div>
+        <div class="input">
+          <input type="number" id="hours" class="input-field" value="1" min="1" max="9999" pattern="[0-9]{1,4}" required/>
+          <label class="input-label">Hours</label>
+        </div>
+
+        <div class="input">
+          <input type="number" id="rank" class="input-field" value="1" min="1" max="10" pattern="[1-9]|10" required/>
+          <label class="input-label">Rank</label>
+        </div>
             <br>
             <div class="select">
             <select id="stat" class="select-field" required>
               <option value="" selected disabled></option>
               <!-- Opciones del select -->
-              <option value="Played">Played</option>
+              <option value="Played" >Played</option>
               <option value="Plan to play">Plan to play</option>
               <option value="Completed">Completed</option>
             </select>
             <label class="select-label">Select</label>
           </div>
+
+          
           
 			<div class="action">
-				<button id="edit" class="action-button">Edit</button>
+				<button type="submit" id="edit" class="action-button">Edit</button>
 			</div>
+
+      </form>
+      
 		
 	</div>
 </div>
@@ -52,7 +59,25 @@ async function Details(params) {
   let element = document.getElementById("card-image");
     element.style.backgroundImage = `url("${game[0].thumbnail}")`;
 
-    divPrincipal.querySelector("#edit").addEventListener("click", async function () {
+    divPrincipal.querySelector("#edit").addEventListener("click", async function (event) {
+      event.preventDefault();
+      let hoursInput = document.querySelector("#hours");
+    let rankInput = document.querySelector("#rank");
+
+    let horas = parseInt(hoursInput.value);
+    let rango = parseInt(rankInput.value);
+
+    if (isNaN(horas) || horas < 1 || horas > 9999) {
+      alert("Please enter a valid value for hours (between 1 and 9999).");
+      hoursInput.focus();
+      return; 
+    }
+
+    if (isNaN(rango) || rango < 1 || rango > 10) {
+      alert("Please enter a valid value for rank (between 1 and 10).");
+      rankInput.focus();
+      return; 
+  }
         let filtro = await getFiltro('User_games?id_games=eq.' + game[0].id + "&id_profiles=eq."+ localStorage.getItem("id"), access_token);
         console.log(filtro);
             let hours = document.querySelector("#hours").value;
